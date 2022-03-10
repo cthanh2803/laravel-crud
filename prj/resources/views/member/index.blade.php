@@ -13,6 +13,7 @@
         <td>{{$member->name}}</td>
         <td>{{$member->telephone}}</td>
         <td>{{$member->email}}</td>
+        <td><th><a href="{{ route('member.show', ['id'=>$member->id])}}">詳細</a></th></tr>
     </tr>
     @endforeach
 </table>
