@@ -1,4 +1,5 @@
 <h1>一覧表</h1>
+<a href="{{ route('member.create') }}">{{ __('新規作成') }}</a>
 <table>
     <tr>
         <th>ID</th>

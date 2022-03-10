@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Member;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\Model;
 
 class MemberController extends Controller
 {
@@ -30,6 +33,7 @@ class MemberController extends Controller
     public function create()
     {
         //
+        return view('member/create');
     }
 
     /**
@@ -41,6 +45,14 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         //
+        $member= new Member;
+        $member->name=$request->input('name');
+        $member->telephone=$request->input('telephone');
+        $member->email=$request->input('email');
+
+        $member->save();
+
+        return redirect('member/index');
     }
 
     /**
