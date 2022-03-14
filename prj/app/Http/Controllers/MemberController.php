@@ -120,4 +120,19 @@ class MemberController extends Controller
 
         return redirect('member/index');
     }
+
+    public function search(Request $request)
+    {
+        $s=$request->input('q');
+        $query=DB::table('members');
+        $s_spaceharf=mb_convert_kana($s, 's');
+        $keyword_array=preg_split('/[\s]+/', $s_spaceharf, -1, PREG_SPLIT_NO_EMPTY);
+        foreach ($keyword_array as $keyword) {
+            $query->where('name', 'like', '%'.$keyword.'%');
+        }
+        $query->select('id', 'name', 'telephone', 'email');
+        $members=$query->paginate(20);
+
+        return view('member/index', compact('members'));
+    }
 }
