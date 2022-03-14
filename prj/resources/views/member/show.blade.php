@@ -17,3 +17,7 @@
 
 <a href="{{ route('member.index') }}">{{ __('一覧に戻る') }}</a>
 <a href="{{route('member.edit', ['id'=>$member->id])}}">{{ __('編集') }}</a>
+<form method="POST" action="{{ route('member.destroy', ['id'=>$member->id])}}">
+    @csrf
+    <button type="submit">削除</button>
+</form>

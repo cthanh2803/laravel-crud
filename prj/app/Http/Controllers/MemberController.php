@@ -111,5 +111,10 @@ class MemberController extends Controller
     public function destroy($id)
     {
         //
+        $member=Member::find($id);
+
+        $member->delete();
+
+        return redirect('member/index');
     }
 }
