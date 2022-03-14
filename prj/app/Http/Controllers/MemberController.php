@@ -77,6 +77,8 @@ class MemberController extends Controller
     public function edit($id)
     {
         //
+        $member=Member::find($id);
+        return view('member/edit', compact('member'));
     }
 
     /**
@@ -89,6 +91,15 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $member=Member::find($id);
+
+        $member->name=$request->input('name');
+        $member->telephone=$request->input('telephone');
+        $member->email=$request->input('email');
+
+        $member->save();
+        
+        return redirect('member/index');
     }
 
     /**
