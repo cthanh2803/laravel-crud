@@ -5,16 +5,25 @@
     <div>
         名前
         <input type="text" name=name value="{{ $member->name }}">
+        @error('name')
+        {{$message}}
+        @enderror
     </div>
 
     <div>
         電話番号
         <input type="text" name=telephone value="{{ $member->telephone }}">
+        @error('telephone')
+        {{$message}}
+        @enderror
     </div>
 
     <div>
         メールアドレス
         <input type="text" name=email value="{{ $member->email }}">
+        @error('email')
+        {{$message}}
+        @enderror
     </div>
 
     <input type="submit" value="更新する">

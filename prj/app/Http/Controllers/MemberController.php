@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Member;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Requests\StoreMember;
+use App\Http\Requests\UpdateMember;
 
 class MemberController extends Controller
 {
@@ -20,7 +22,8 @@ class MemberController extends Controller
         //
         $members=DB::table('members')
             ->select('id', 'name', 'telephone', 'email')
-            ->get();
+            // ->get();
+            ->paginate(20);
 
         return view('member/index', compact('members'));
     }
@@ -42,7 +45,7 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMember $request)
     {
         //
         $member= new Member;
@@ -88,7 +91,7 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMember $request, $id)
     {
         //
         $member=Member::find($id);
